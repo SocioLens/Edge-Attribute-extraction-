@@ -5,6 +5,7 @@ from collections import Counter
 
 
 df=pd.read_excel('df.xlsx', header=None)
+digitsupp=['1','2','3','4','5','6','7','8','9']
 
 #Lien : Répondant p cité 
 
@@ -105,13 +106,56 @@ while dvb<len(amif)-1:
     else :
         pass
     dvb=dvb+1
-
-
-
+    
 lienamif = list(zip(amif, flat_aleatoire))    
 e=pd.DataFrame(lienamif) 
 
-                     
+originf=[]
+
+for ami in amif :
+    ami = " ".join(ami.split(" ", 2)[:2])
+    originf.append(ami)
+
+lienamif2=list(zip(originf, amif))
+
+slll=0
+longamif=0
+slicer1=0
+slicer2=number_of_unique_values[0]
+pairsf=[]
+
+totalf = 0
+for ele in range(0, len(number_of_unique_values)):
+    totalf = totalf + number_of_unique_values[ele]
+
+def pop_random(lst):
+    idx = random.randrange(0, len(lst))
+    return lst.pop(idx)
+
+while slll<=len(number_of_unique_values) :
+        possssif=amif[slicer1:slicer2]
+        if len(possssif) > 1 :
+            if len(possssif) in (3,5,7,9) :
+                posit=len(possssif)-1
+                elem=possssif[posit]    
+                possssif.append(elem)
+            else :
+                possssif=possssif
+            while possssif:
+                rand1f = pop_random(possssif)
+                rand2f = pop_random(possssif)
+                pair = rand1f, rand2f
+                pairsf.append(pair) 
+        slicer1=slicer2
+        if slll+1 == len(number_of_unique_values) :
+            break
+        else:
+            slll=slll+1
+            slicer2=slicer2+number_of_unique_values[slll]
+    
+e=e.append(lienamif2, ignore_index=True)
+e=e.append(pairsf, ignore_index=True)
+
 
 #Lien Ami univ (H):
     
@@ -201,9 +245,55 @@ while dvb<len(amih)-1:
         dvb=dvb+1
     else :
         dvb=dvb+1
-
+                        
 lienamih = list(zip(amih, flat_aleatoiree))    
 f=pd.DataFrame(lienamih) 
+
+originh=[]
+
+for ami in amih :
+    ami = " ".join(ami.split(" ", 2)[:2])
+    originh.append(ami)
+
+lienamih2=list(zip(originh,amih))
+
+totalh = 0
+for ele in range(0, len(number_of_unique_value)):
+    totalh = totalh + number_of_unique_value[ele]
+
+sllh=0
+longamih=0
+slicer1h=0
+slicer2h=number_of_unique_value[0]
+pairsh=[]
+
+while sllh<=len(number_of_unique_value) :
+        possssih=amih[slicer1h:slicer2h]
+        if len(possssih) != 1 :
+            if len(possssih) in (3,5,7,9) :
+                posit=len(possssih)-1
+                elem=possssih[posit]    
+                possssih.append(elem)
+            else :
+                possssih=possssih
+            while possssih:
+                    rand1 = pop_random(possssih)
+                    rand2 = pop_random(possssih)
+                    pair = rand1, rand2
+                    pairsh.append(pair) 
+        slicer1h=slicer2h
+        if sllh+1 == len(number_of_unique_value) :
+            break
+        else:
+            sllh=sllh+1
+            slicer2h=slicer2h+number_of_unique_value[sllh]
+            
+f=f.append(lienamih2, ignore_index=True)
+f=f.append(pairsh, ignore_index=True)
+
+
+amiff=f[0].tolist()
+sanschiffre=[item+b for item in cff]
 
 dfhf=df[[9,64]]
 homme='Homme'
