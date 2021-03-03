@@ -3,8 +3,36 @@ import numpy as np
 import random
 from collections import Counter
 
+print("""\
+      
+                              SocioLens 
+                                ______              
+                             .-'      `-.           
+                           .'            `.         
+                          /                \        
+                         ;                 ;`       
+                         |         H       |;       
+                         ;                 ;|
+                         '\               / ;       
+                          \`.           .' /        
+                           `.`-._____.-' .'         
+                             / /`_____.-'           
+                            / / /                   
+                           / / /
+                          / / /
+                         / / /
+                        / / /
+                       / / /
+                      / / /
+                     / / /
+                    / / /
+                    \/_/
 
-df=pd.read_excel('df.xlsx', header=None)
+                    """)
+
+intc = input("Nom du fichier.xlsx : ")
+
+df=pd.read_excel(intc, header=None)
 digitsupp=['1','2','3','4','5','6','7','8','9']
 
 #Lien : Répondant p cité 
@@ -27,7 +55,7 @@ d=d.dropna()
 
 #Lien Ami univ (F):
 
-df['str48']=df[48].astype(str)
+df['str48']=df[53].astype(str)
 nomnodf=list(df[9])
 nbnodefe=list(df[47].dropna())
 
@@ -233,6 +261,8 @@ flat_aleatoiree = [item for sublist in aleatoiree for item in sublist]
 b=" AH" 
 
 amih=[item+b for item in cff]
+zardo=[item+b for item in cff]
+
 
 dvb=0
 c1=2
@@ -295,7 +325,7 @@ f=f.append(pairsh, ignore_index=True)
 amiff=f[0].tolist()
 sanschiffre=[item+b for item in cff]
 
-dfhf=df[[9,64]]
+dfhf=df[[9,54]]
 homme='Homme'
 femme='Femme'
 
@@ -333,6 +363,9 @@ dfhf=dfhf.set_index(9,inplace=True)
 
 dictionnairedessexes=pd.concat([g,h,i,dfhf])
 dictionnairedesliens=pd.concat([d,e,f])
+dictionnairedesliens = dictionnairedesliens.drop_duplicates(subset=[0, 1], keep='first')
 
+dictionnairedessexes.to_excel("Dictionnaire_attribut_sexe.xlsx")  
+dictionnairedesliens.to_excel("Dictionnaire_liens.xlsx")  
     
     
