@@ -11,7 +11,7 @@ print("""\
                            .'            `.         
                           /                \        
                          ;                 ;`       
-                         |         H       |;       
+                         |         S       |;       
                          ;                 ;|
                          '\               / ;       
                           \`.           .' /        
@@ -55,9 +55,12 @@ d=d.dropna()
 
 #Lien Ami univ (F):
 
+df[52]=df[52].fillna(0)    
+
 df['str48']=df[53].astype(str)
 nomnodf=list(df[9])
-nbnodefe=list(df[47].dropna())
+nbnodefe=list(df[47].fillna(0))
+nbnodefe=([int(nbnodefe) for nbnodefe in nbnodefe])
 
 cf = sum([[s] * n for s, n in zip(nomnodf, nbnodefe)], [])
 
@@ -74,7 +77,11 @@ for item in df['str48'].iteritems():
     for digit in a :           
         e=int(digit)
         inde.append(e)
-        
+
+for ele in inde: 
+    if ele == 0: 
+        inde.remove(ele) 
+
 b=0
 df['count'] = df['str48'].str.len()
 count=list(df['count'])
@@ -85,37 +92,45 @@ a2=0
 possible=[]
 
 while b<lk :
-    aaa=list(dfn.iloc [b])
-    bbb=count[b]
-    a1=a1+bbb
-    ccc=[]
-    ccc.append(inde[a2:a1])
-    ccc=list(ccc)
-    for num in ccc :
-        for n in num :
-            possible.append(aaa[n-1])
-    a2=a1
-    b=b+1
+        aaa=list(dfn.iloc [b])
+        bbb=count[b]
+        a1=a1+bbb
+        ccc=[]
+        ccc.append(inde[a2:a1])
+        ccc=list(ccc)
+        for num in ccc :
+            for n in num :
+                possible.append(aaa[n-1])
+        a2=a1
+        b=b+1
 
 
 number_of_unique_values=list(Counter(cf).values())
 
+a=0
 c=0
 b1=0
 b2=0
 det=0
 aleatoire=[]
-lki=len(number_of_unique_values)
+lki=len(count)
 
 while c<lki :
-    b1=b2
-    b2=count[c]+b2
-    aaa=possible[b1:b2] 
-    ccc=number_of_unique_values[det]
-    ran=random.choices(aaa, k=ccc)
-    aleatoire.append(ran)
-    c=c+1
-    det=det+1
+    if df.iloc[c][47] == 0 :
+        a=count[c]
+        b1=b1+a
+        c=c+1
+        b2=b1
+    else: 
+        a=count[c]
+        b1=b1+a
+        aaa=possible[b2:b1] 
+        ccc=number_of_unique_values[det]
+        ran=random.choices(aaa, k=ccc)
+        aleatoire.append(ran)
+        det=det+1
+        c=c+1
+        b2=b1
 
 
 flat_aleatoire = [item for sublist in aleatoire for item in sublist]
@@ -125,10 +140,10 @@ a=" AF"
 amif=[item+a for item in cf]
 
 dvb=0
-c1=2
 
 while dvb<len(amif)-1:
-    if amif[dvb] == amif[dvb+1] or amif[dvb][:-1] == amif[dvb+1]  : 
+    if amif[dvb] == amif[dvb+1] or amif[dvb].split(' ')[1] == amif[dvb+1].split(' ')[1]   : 
+        c1=2
         amif[dvb+1]=amif[dvb]+str(c1)
         c1=c1+1
     else :
@@ -187,10 +202,11 @@ e=e.append(pairsf, ignore_index=True)
 
 #Lien Ami univ (H):
     
-
+df[52]=df[52].fillna(0)
     
 df['str53']=df[53].astype(str)
-nbnodefe2=list(df[52].dropna())
+nbnodefe2=list(df[52].fillna(0))
+nbnodefe2=([int(nbnodefe2) for nbnodefe2 in nbnodefe2])
 new_list = []
 for item in nbnodefe2:
     new_list.append(int(item))
@@ -210,7 +226,11 @@ for item in df['str53'].iteritems():
     for digit in a :           
         ef=int(digit)
         indee.append(ef)
-        
+
+for ele in indee: 
+    if ele == 0: 
+        indee.remove(ele) 
+   
 bb=0
 df['count2'] = df['str53'].str.len()
 count2=list(df['count2'])
@@ -222,38 +242,50 @@ lkk=len(dfn)
 possi=[]
 
 while bb<lkk :
-    aaa=list(dfn.iloc [bb])
-    bbb=count2[bb]
-    aa1=aa1+bbb
-    ccc=[]
-    ccc.append(indee[aa2:aa1])
-    ccc=list(ccc)
-    for num in ccc :
-        for n in num :
-            possi.append(aaa[n-1])
+    if df.iloc[bb][52] == 0 :
+        bbb=count2[bb]
+        aa1=aa1+count2[bb]
+        bb=bb+1
+    if df.iloc[bb][52] != 0  :
+        aaa=list(dfn.iloc [bb])
+        aa1=aa1+count2[bb]
+        ccc=[]
+        ccc.append(indee[aa2:aa1])
+        ccc=list(ccc)
+        for num in ccc :
+            for n in num :
+                possi.append(aaa[n-1])
     aa2=aa1
     bb=bb+1
 
 number_of_unique_value=list(Counter(cff).values())
 
+aa=0
 cc=0 # index count 2
 bb1=0 #positionnels count 2 = slicer
 bb2=0   #positionnels count 2
 dd=0
-lkki=len(number_of_unique_value)
+lkki=len(count)
 aleatoiree=[]
 
 
 
 while cc<lkki :
-    bb1=bb2
-    bb2=count2[cc]+bb2
-    aaa=possi[bb1:bb2] 
-    ccc=number_of_unique_value[dd]
-    ran=random.choices(aaa, k=ccc)
-    aleatoiree.append(ran)
-    cc=cc+1
-    dd=dd+1
+    if df.iloc[cc][52] == 0 :
+        aa=count[cc]
+        bb1=bb1+int(aa)
+        cc=cc+1
+        bb2=bb1
+    else :
+        aa=count[cc]
+        bb1=bb1+aa
+        aaa=possible[bb2:bb1]
+        ccc=number_of_unique_value[dd]
+        ran=random.choices(aaa, k=ccc)
+        aleatoiree.append(ran)
+        dd=dd+1
+        cc=cc+1
+        bb2=bb1
      
 
 flat_aleatoiree = [item for sublist in aleatoiree for item in sublist]
@@ -265,11 +297,10 @@ zardo=[item+b for item in cff]
 
 
 dvb=0
-c1=2
-
 
 while dvb<len(amih)-1:
-    if amih[dvb] == amih[dvb+1] or amih[dvb][:-1] == amih[dvb+1]  :
+    c1=2
+    if amih[dvb] == amih[dvb+1] or amih[dvb].split(' ')[1] == amih[dvb+1].split(' ')[1] :
         amih[dvb+1]=amih[dvb]+str(c1)
         c1=c1+1
         dvb=dvb+1
