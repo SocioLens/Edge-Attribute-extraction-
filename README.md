@@ -36,8 +36,8 @@ La majorité des modifications faites au questionnaire n'induisent que des modif
 Le programme d'extraction permet de réaliser les étapes décrites dans le rapport finale d'enquête.
 Nous fournissons une version exécutable du programme ainsi que le code source :
 
-- L'exécutable permet d'extraire directement les données de réseaux si le formulaire n'a pas été altéré. 
-- Le code source permet de réaliser des modifications en accord avec les changements réalisés sur le questionnaire ou de modifier/ajouter des fonctionnalités à celles que nous avons intégrées. 
+- L'exécutable permet d'extraire directement les données de réseaux, si le formulaire n'a pas été altéré. 
+- Le code source permet de réaliser des modifications en accord avec les changements réalisés au questionnaire et de modifier/ajouter des fonctionnalités à celles que nous avons intégrées. 
 
 Pour utiliser la version exécutable de notre programme il convient de : 
 
