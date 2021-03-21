@@ -12,7 +12,7 @@ Le répertoire comprend :
 ## Formulaire : 
 
 Le questionnaire réalisé pour la collecte des données nécessaires à la constitution du réseau est fournit au format WebForm de manière à être aisément insérer dans une page internet. Le formulaire est également disponible sur le site internet "[FramaForm](https://framaforms.org/node/401440/clone/confirm)" et peut être modifié/partagé via cette plateforme. 
-Nous tenons malgré tout à prévenir les futurs utilisateurs du questionnaire que toute modification induite au questionnaire suppose des modification au programme d'extraction des données. 
+Nous tenons malgré tout à prévenir les futurs utilisateurs du questionnaire que toute modification faites au questionnaire induit des modification au programme d'extraction des données. 
 Le programme fonctionnant pas indexation des colonnes, certaines valeurs devront être modifié si la position relative des questions se voie modifié. 
 
 Exemple : Si l'utilisateur décide d'ajouter deux nouvelles questions à la première partie du questionnaire.
@@ -23,13 +23,13 @@ Original :
 dfn=df[[9,12,13,14,15,16,17,18,19,20,21]].applymap(lambda x: np.nan if x =="Prénom Nom" else x)
 ```
 
- Si 2 questions sont ajoutées dans la première partie : 
+ Modifié : 
 
 ```python
 dfn=df[[11,14,15,16,17,18,19,20,21,22,23]].applymap(lambda x: np.nan if x =="Prénom Nom" else x)
 ```
 
-La majorité des modifications faites au questionnaire n'induisent que des modifications mineurs au programme (comme celle que nous venons de montrer) et peuvent simplement être réalisé par l'utilisateur. Il est néanmoins essentiel d'être conscient de la nécessité de changements avant de réaliser toute modification au questionnaire. 
+La majorité des modifications faites au questionnaire n'induisent que des modifications mineurs au programme (comme celle que nous venons de montrer) pouvant simplement être réalisé par l'utilisateur. Il est néanmoins essentiel d'être conscient de la nécessité de changements avant de réaliser toute modification au questionnaire. 
 
 ## Extraction : 
 
@@ -51,8 +51,8 @@ Lorsque ces étapes ont été réalisé le programme peut être lancé et il con
 
  
 
-Le programme fournit alors deux fichiers Excel : Le premier fournit l'ensemble des paires de nœud du réseaux et le second indique pour chacun des nœuds le sexe de l'individu correspondant. 
-Ces deux fichiers peuvent après des nettoyages mineurs (réalisable directement sous excel) être importé et exploité pour l'analyse. 
+Le programme fournit alors deux fichiers Excel : Le premier contient l'ensemble des paires de nœud du réseaux et le second indique pour chacun des nœuds le sexe de l'individu correspondant. 
+Ces deux fichiers peuvent après des nettoyages mineurs (réalisable directement sous excel) être importé via NetworkX et exploité pour l'analyse. 
 
 
 
