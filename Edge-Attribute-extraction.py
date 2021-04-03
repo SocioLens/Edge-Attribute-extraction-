@@ -35,11 +35,13 @@ intc = input("Nom du fichier.xlsx : ")
 df=pd.read_excel(intc, header=None)
 digitsupp=['1','2','3','4','5','6','7','8','9']
 
-#Lien : Répondant p cité 
+#Dictionnaire des liens : Répondant --> Personnes cites 
+
+#Colonnes : Répondant + Personnes cites
 
 dfn=df[[9,12,13,14,15,16,17,18,19,20,21]].applymap(lambda x: np.nan if x =="Prénom Nom" else x)
 
-node={}
+node={} 
 
 for row in dfn.iterrows():
     y = []
@@ -53,7 +55,7 @@ d=pd.DataFrame(new_data)
 d=d.explode(1)
 d=d.dropna()
 
-#Lien Ami univ (F):
+#Liens répondants --> Amis + Amis --> Personnes cites
 
 df[52]=df[52].fillna(0)    
 
