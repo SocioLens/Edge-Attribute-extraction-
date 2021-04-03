@@ -55,19 +55,19 @@ d=pd.DataFrame(new_data)
 d=d.explode(1)
 d=d.dropna()
 
-#Liens répondants --> Amis + Amis --> Personnes cites
+#Liens répondants --> Amis + Amis --> Personnes cites (Femmes)
 
-df[52]=df[52].fillna(0)    
+df[52]=df[52].fillna(0)  #Nbre d'amies  
 
-df['str48']=df[53].astype(str)
-nomnodf=list(df[9])
-nbnodefe=list(df[47].fillna(0))
+df['str48']=df[53].astype(str) #Indexe des personnes cités
+nomnodf=list(df[9]) # Repondant
+nbnodefe=list(df[47].fillna(0)) #NB Amies 
 nbnodefe=([int(nbnodefe) for nbnodefe in nbnodefe])
 
 cf = sum([[s] * n for s, n in zip(nomnodf, nbnodefe)], [])
 
 
-dfn=dfn.drop([9],axis=1)
+dfn=dfn.drop([9],axis=1) #Repondant
 
 inde=[]
 ln=[]
@@ -118,7 +118,7 @@ aleatoire=[]
 lki=len(count)
 
 while c<lki :
-    if df.iloc[c][47] == 0 :
+    if df.iloc[c][47] == 0 : #Nombre d'amies 
         a=count[c]
         b1=b1+a
         c=c+1
@@ -198,16 +198,16 @@ while slll<=len(number_of_unique_values) :
             slll=slll+1
             slicer2=slicer2+number_of_unique_values[slll]
     
-e=e.append(lienamif2, ignore_index=True)
+e=e.append(lienamif2, ignore_index=True) #Dictionnaire relation amies --> Répondant / Personnes cités
 e=e.append(pairsf, ignore_index=True)
 
 
-#Lien Ami univ (H):
+#Liens répondants --> Amis + Amis --> Personnes cites (Hommes)
     
-df[52]=df[52].fillna(0)
+df[52]=df[52].fillna(0) #Possibilité de suppr --> Utile si diff amitiés H/F
     
-df['str53']=df[53].astype(str)
-nbnodefe2=list(df[52].fillna(0))
+df['str53']=df[53].astype(str) #Indexe des personnes cités
+nbnodefe2=list(df[52].fillna(0))  #NB Amis
 nbnodefe2=([int(nbnodefe2) for nbnodefe2 in nbnodefe2])
 new_list = []
 for item in nbnodefe2:
@@ -244,7 +244,7 @@ lkk=len(dfn)
 possi=[]
 
 while bb<lkk :
-    if df.iloc[bb][52] == 0 :
+    if df.iloc[bb][52] == 0 : #Nombre d'amis
         bbb=count2[bb]
         aa1=aa1+count2[bb]
         bb=bb+1
@@ -351,21 +351,21 @@ while sllh<=len(number_of_unique_value) :
             sllh=sllh+1
             slicer2h=slicer2h+number_of_unique_value[sllh]
             
-f=f.append(lienamih2, ignore_index=True)
+f=f.append(lienamih2, ignore_index=True) #Dictionnaires hommes
 f=f.append(pairsh, ignore_index=True)
 
 
 amiff=f[0].tolist()
 sanschiffre=[item+b for item in cff]
 
-dfhf=df[[9,54]]
+dfhf=df[[9,54]] 
 homme='Homme'
 femme='Femme'
 
 dih = {k:homme for k in amih}
 dif = {k:femme for k in amif}
 
-dfhf2=df[[12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]].transpose()
+dfhf2=df[[12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]].transpose() #Personnes cité + sexes
 
 connsexe={}
 
